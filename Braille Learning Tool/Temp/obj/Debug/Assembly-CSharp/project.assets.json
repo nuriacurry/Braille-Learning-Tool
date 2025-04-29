@@ -8,19 +8,19 @@
     ".NETStandard,Version=v2.1": []
   },
   "packageFolders": {
-    "/Users/jannatulnaima/.nuget/packages/": {}
+    "/Users/nuria/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/jannatulnaima/Documents/code/projects/Braille-Learning-Tool/Braille Learning Tool/Assembly-CSharp.csproj",
+      "projectUniqueName": "/Users/nuria/Desktop/Braille-Learning-Tool/Braille Learning Tool/Assembly-CSharp.csproj",
       "projectName": "Assembly-CSharp",
-      "projectPath": "/Users/jannatulnaima/Documents/code/projects/Braille-Learning-Tool/Braille Learning Tool/Assembly-CSharp.csproj",
-      "packagesPath": "/Users/jannatulnaima/.nuget/packages/",
-      "outputPath": "/Users/jannatulnaima/Documents/code/projects/Braille-Learning-Tool/Braille Learning Tool/Temp/obj/Debug/Assembly-CSharp/",
+      "projectPath": "/Users/nuria/Desktop/Braille-Learning-Tool/Braille Learning Tool/Assembly-CSharp.csproj",
+      "packagesPath": "/Users/nuria/.nuget/packages/",
+      "outputPath": "/Users/nuria/Desktop/Braille-Learning-Tool/Braille Learning Tool/Temp/obj/Debug/Assembly-CSharp/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/jannatulnaima/.nuget/NuGet/NuGet.Config"
+        "/Users/nuria/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netstandard2.1"
