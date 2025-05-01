@@ -5,7 +5,7 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638814810700000000
+      ticks: 638816653270000000
     m_Hash: 692855561
   m_LockFileStatus:
     m_FilePath: /Users/nuria/Desktop/Braille-Learning-Tool/Braille Learning Tool/Packages/packages-lock.json
@@ -13,7 +13,7 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638814810700000000
+      ticks: 638816653270000000
     m_Hash: 1629442027
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
@@ -121,9 +121,11 @@ m_ResolvedPackages:
     - 2.5.2
     - 2.6.0
     - 2.7.1
+    - 2.8.1
     compatible:
     - 2.6.0
     - 2.7.1
+    - 2.8.1
     recommended: 2.6.0
     deprecated: []
   dependencies: []
