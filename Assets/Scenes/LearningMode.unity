@@ -371,6 +371,7 @@ GameObject:
   - component: {fileID: 114433580}
   - component: {fileID: 114433579}
   - component: {fileID: 114433578}
+  - component: {fileID: 114433582}
   m_Layer: 5
   m_Name: BrailleButton2
   m_TagString: Untagged
@@ -412,6 +413,11 @@ MonoBehaviour:
   buttonId: 2
   isSelected: 0
   buttonSound: {fileID: 8300000, guid: e32d25e9a631a4ea9aa59ac74d2597c7, type: 3}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  selectedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  pressedColor: {r: 1, g: 0.8, b: 0, a: 1}
+  pressScaleAmount: 0.9
+  animationSpeed: 10
 --- !u!114 &114433579
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -494,6 +500,102 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 114433576}
   m_CullTransparentMesh: 1
+--- !u!82 &114433582
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 114433576}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: e32d25e9a631a4ea9aa59ac74d2597c7, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &213658126
 GameObject:
   m_ObjectHideFlags: 0
@@ -530,7 +632,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 14, y: 1049}
+  m_AnchoredPosition: {x: 14.000977, y: 984.81}
   m_SizeDelta: {x: 0, y: 1696.207}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &213658128
@@ -744,6 +846,7 @@ GameObject:
   - component: {fileID: 500542607}
   - component: {fileID: 500542606}
   - component: {fileID: 500542605}
+  - component: {fileID: 500542609}
   m_Layer: 5
   m_Name: BrailleButton1
   m_TagString: Untagged
@@ -785,6 +888,11 @@ MonoBehaviour:
   buttonId: 1
   isSelected: 0
   buttonSound: {fileID: 8300000, guid: 659bb3b53d05d46cbac277b9626d1aff, type: 3}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  selectedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  pressedColor: {r: 1, g: 0.8, b: 0, a: 1}
+  pressScaleAmount: 0.9
+  animationSpeed: 10
 --- !u!114 &500542606
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -867,6 +975,102 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 500542603}
   m_CullTransparentMesh: 1
+--- !u!82 &500542609
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 500542603}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 659bb3b53d05d46cbac277b9626d1aff, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &515230105
 GameObject:
   m_ObjectHideFlags: 0
@@ -1111,6 +1315,11 @@ MonoBehaviour:
   buttonId: 6
   isSelected: 0
   buttonSound: {fileID: 0}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  selectedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  pressedColor: {r: 1, g: 0.8, b: 0, a: 1}
+  pressScaleAmount: 0.9
+  animationSpeed: 10
 --- !u!114 &601655758
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1672,6 +1881,11 @@ MonoBehaviour:
   buttonId: 2
   isSelected: 0
   buttonSound: {fileID: 0}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  selectedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  pressedColor: {r: 1, g: 0.8, b: 0, a: 1}
+  pressScaleAmount: 0.9
+  animationSpeed: 10
 --- !u!114 &815375336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1935,14 +2149,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cbf608dbe4f44e979a9aec5b8e6ac9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  letterDisplay: {fileID: 1892727430}
-  prevButton: {fileID: 0}
-  homeButton: {fileID: 0}
-  nextButton: {fileID: 0}
-  letterPanel: {fileID: 0}
-  brailleGridPanel: {fileID: 0}
-  navigationPanel: {fileID: 0}
-  brailleGridManager: {fileID: 0}
+  buttonId: 0
+  isSelected: 0
+  buttonSound: {fileID: 0}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  selectedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  pressedColor: {r: 1, g: 0.8, b: 0, a: 1}
+  pressScaleAmount: 0.9
+  animationSpeed: 10
 --- !u!1 &1091777105
 GameObject:
   m_ObjectHideFlags: 0
@@ -1998,6 +2212,11 @@ MonoBehaviour:
   buttonId: 4
   isSelected: 0
   buttonSound: {fileID: 0}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  selectedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  pressedColor: {r: 1, g: 0.8, b: 0, a: 1}
+  pressScaleAmount: 0.9
+  animationSpeed: 10
 --- !u!114 &1091777108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2093,6 +2312,7 @@ GameObject:
   - component: {fileID: 1140165163}
   - component: {fileID: 1140165162}
   - component: {fileID: 1140165161}
+  - component: {fileID: 1140165165}
   m_Layer: 5
   m_Name: BrailleButton6
   m_TagString: Untagged
@@ -2133,7 +2353,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonId: 6
   isSelected: 0
-  buttonSound: {fileID: 8300000, guid: 8b872537d809b471c896e4b3582bd8af, type: 3}
+  buttonSound: {fileID: 8300000, guid: 8dfde721788494c8e99da89254529226, type: 3}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  selectedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  pressedColor: {r: 1, g: 0.8, b: 0, a: 1}
+  pressScaleAmount: 0.9
+  animationSpeed: 10
 --- !u!114 &1140165162
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2216,6 +2441,102 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1140165159}
   m_CullTransparentMesh: 1
+--- !u!82 &1140165165
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1140165159}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 8dfde721788494c8e99da89254529226, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1204428098
 GameObject:
   m_ObjectHideFlags: 0
@@ -2405,6 +2726,11 @@ MonoBehaviour:
   buttonId: 5
   isSelected: 0
   buttonSound: {fileID: 0}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  selectedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  pressedColor: {r: 1, g: 0.8, b: 0, a: 1}
+  pressScaleAmount: 0.9
+  animationSpeed: 10
 --- !u!114 &1335752814
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2723,6 +3049,11 @@ MonoBehaviour:
   buttonId: 6
   isSelected: 0
   buttonSound: {fileID: 0}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  selectedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  pressedColor: {r: 1, g: 0.8, b: 0, a: 1}
+  pressScaleAmount: 0.9
+  animationSpeed: 10
 --- !u!114 &1509905219
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2738,6 +3069,11 @@ MonoBehaviour:
   buttonId: 5
   isSelected: 0
   buttonSound: {fileID: 0}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  selectedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  pressedColor: {r: 1, g: 0.8, b: 0, a: 1}
+  pressScaleAmount: 0.9
+  animationSpeed: 10
 --- !u!114 &1509905220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2753,6 +3089,11 @@ MonoBehaviour:
   buttonId: 4
   isSelected: 0
   buttonSound: {fileID: 0}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  selectedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  pressedColor: {r: 1, g: 0.8, b: 0, a: 1}
+  pressScaleAmount: 0.9
+  animationSpeed: 10
 --- !u!114 &1509905221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2768,6 +3109,11 @@ MonoBehaviour:
   buttonId: 3
   isSelected: 1
   buttonSound: {fileID: 0}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  selectedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  pressedColor: {r: 1, g: 0.8, b: 0, a: 1}
+  pressScaleAmount: 0.9
+  animationSpeed: 10
 --- !u!114 &1509905222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2783,6 +3129,11 @@ MonoBehaviour:
   buttonId: 2
   isSelected: 1
   buttonSound: {fileID: 0}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  selectedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  pressedColor: {r: 1, g: 0.8, b: 0, a: 1}
+  pressScaleAmount: 0.9
+  animationSpeed: 10
 --- !u!114 &1509905223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2798,6 +3149,11 @@ MonoBehaviour:
   buttonId: 1
   isSelected: 0
   buttonSound: {fileID: 0}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  selectedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  pressedColor: {r: 1, g: 0.8, b: 0, a: 1}
+  pressScaleAmount: 0.9
+  animationSpeed: 10
 --- !u!1 &1564458443
 GameObject:
   m_ObjectHideFlags: 0
@@ -2853,6 +3209,11 @@ MonoBehaviour:
   buttonId: 3
   isSelected: 0
   buttonSound: {fileID: 0}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  selectedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  pressedColor: {r: 1, g: 0.8, b: 0, a: 1}
+  pressScaleAmount: 0.9
+  animationSpeed: 10
 --- !u!114 &1564458446
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3138,6 +3499,11 @@ MonoBehaviour:
   buttonId: 1
   isSelected: 0
   buttonSound: {fileID: 0}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  selectedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  pressedColor: {r: 1, g: 0.8, b: 0, a: 1}
+  pressScaleAmount: 0.9
+  animationSpeed: 10
 --- !u!114 &1731932568
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3367,6 +3733,7 @@ GameObject:
   - component: {fileID: 1763247522}
   - component: {fileID: 1763247521}
   - component: {fileID: 1763247520}
+  - component: {fileID: 1763247524}
   m_Layer: 5
   m_Name: BrailleButton3
   m_TagString: Untagged
@@ -3408,6 +3775,11 @@ MonoBehaviour:
   buttonId: 3
   isSelected: 0
   buttonSound: {fileID: 8300000, guid: bec1542b8e7844397a94ae3e26071dfe, type: 3}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  selectedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  pressedColor: {r: 1, g: 0.8, b: 0, a: 1}
+  pressScaleAmount: 0.9
+  animationSpeed: 10
 --- !u!114 &1763247521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3490,6 +3862,102 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1763247518}
   m_CullTransparentMesh: 1
+--- !u!82 &1763247524
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1763247518}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: bec1542b8e7844397a94ae3e26071dfe, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1836526132
 GameObject:
   m_ObjectHideFlags: 0
@@ -3521,14 +3989,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cbf608dbe4f44e979a9aec5b8e6ac9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  letterDisplay: {fileID: 0}
-  prevButton: {fileID: 0}
-  homeButton: {fileID: 0}
-  nextButton: {fileID: 0}
-  letterPanel: {fileID: 0}
-  brailleGridPanel: {fileID: 0}
-  navigationPanel: {fileID: 0}
-  brailleGridManager: {fileID: 0}
+  buttonId: 0
+  isSelected: 0
+  buttonSound: {fileID: 0}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  selectedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  pressedColor: {r: 1, g: 0.8, b: 0, a: 1}
+  pressScaleAmount: 0.9
+  animationSpeed: 10
 --- !u!114 &1836526134
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3830,6 +4298,7 @@ GameObject:
   - component: {fileID: 2008027146}
   - component: {fileID: 2008027145}
   - component: {fileID: 2008027144}
+  - component: {fileID: 2008027148}
   m_Layer: 5
   m_Name: BrailleButton4
   m_TagString: Untagged
@@ -3871,6 +4340,11 @@ MonoBehaviour:
   buttonId: 4
   isSelected: 0
   buttonSound: {fileID: 8300000, guid: e53fa7800657041cabc04d8898cad0a2, type: 3}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  selectedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  pressedColor: {r: 1, g: 0.8, b: 0, a: 1}
+  pressScaleAmount: 0.9
+  animationSpeed: 10
 --- !u!114 &2008027145
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3953,6 +4427,102 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2008027142}
   m_CullTransparentMesh: 1
+--- !u!82 &2008027148
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2008027142}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: e53fa7800657041cabc04d8898cad0a2, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &2014744655
 GameObject:
   m_ObjectHideFlags: 0
@@ -3966,6 +4536,7 @@ GameObject:
   - component: {fileID: 2014744659}
   - component: {fileID: 2014744658}
   - component: {fileID: 2014744657}
+  - component: {fileID: 2014744661}
   m_Layer: 5
   m_Name: BrailleButton5
   m_TagString: Untagged
@@ -4007,6 +4578,11 @@ MonoBehaviour:
   buttonId: 5
   isSelected: 0
   buttonSound: {fileID: 8300000, guid: 8b872537d809b471c896e4b3582bd8af, type: 3}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  selectedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  pressedColor: {r: 1, g: 0.8, b: 0, a: 1}
+  pressScaleAmount: 0.9
+  animationSpeed: 10
 --- !u!114 &2014744658
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4089,6 +4665,102 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2014744655}
   m_CullTransparentMesh: 1
+--- !u!82 &2014744661
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2014744655}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 8b872537d809b471c896e4b3582bd8af, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &2069488716
 GameObject:
   m_ObjectHideFlags: 0

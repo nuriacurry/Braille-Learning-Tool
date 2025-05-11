@@ -1,205 +1,168 @@
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
+using UnityEngine.EventSystems;
 using System.Collections;
-using UnityEngine.SceneManagement;
 
-public class LearningModeController : MonoBehaviour
+public class BrailleDotButton : MonoBehaviour, IPointerClickHandler, IPointerDownHandler, IPointerUpHandler
 {
-    [Header("UI References")]
-    [SerializeField] private TextMeshProUGUI letterDisplay;
-    [SerializeField] private Button prevButton;
-    [SerializeField] private Button homeButton;
-    [SerializeField] private Button nextButton;
+    public int buttonId; // 1-6 for standard Braille dot positions
+    public bool isSelected = false;
+    public AudioClip buttonSound; // Different tone for each button
     
-    [Header("Background Panels")]
-    [SerializeField] private Image letterPanel;
-    [SerializeField] private Image brailleGridPanel;
-    [SerializeField] private Image navigationPanel;
+    // Customize these to change button look & feel
+    public Color defaultColor = Color.white;
+    public Color selectedColor = Color.yellow;
+    public Color pressedColor = new Color(1f, 0.8f, 0f); // Orange-ish when pressed
+    public float pressScaleAmount = 0.9f; // Shrink to 90% when pressed
+    public float animationSpeed = 10f; // Higher = faster animation
     
-    [Header("Braille References")]
-    [SerializeField] private BrailleGridManager brailleGridManager;
-    
-    // Current letter index
-    private int currentLetterIndex = 0;
-    private char[] letters = new char[26]; // A-Z
-    
-    // For haptic feedback
-    private bool vibrationEnabled = true;
-    
-    // Reference to the BrailleDatabase
-    private BrailleDatabase brailleDatabase;
+    private Button button;
+    private Image buttonImage;
+    private AudioSource audioSource;
+    private Vector3 originalScale;
+    private bool isPressed = false;
     
     void Start()
     {
-        // Initialize the alphabet
-        for (int i = 0; i < 26; i++)
+        // Grab all the stuff we need
+        button = GetComponent<Button>();
+        buttonImage = GetComponent<Image>();
+        audioSource = GetComponent<AudioSource>();
+        
+        // No audio? No problem, let's add it
+        if (audioSource == null)
         {
-            letters[i] = (char)('A' + i);
+            audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource.playOnAwake = false; // Don't play until we say so
         }
         
-        // Set up button listeners
-        prevButton.onClick.AddListener(OnPrevButtonPressed);
-        homeButton.onClick.AddListener(OnHomeButtonPressed);
-        nextButton.onClick.AddListener(OnNextButtonPressed);
-        
-        // Find BrailleDatabase
-        brailleDatabase = BrailleDatabase.Instance;
-        if (brailleDatabase == null)
+        // Make sure the audio clip is assigned
+        if (buttonSound != null && audioSource != null)
         {
-            Debug.LogError("BrailleDatabase not found! Make sure it's in the scene.");
+            audioSource.clip = buttonSound;
         }
         
-        // Display initial letter
-        DisplayCurrentLetter();
+        // Remember how big the button is supposed to be
+        originalScale = transform.localScale != Vector3.zero ? transform.localScale : Vector3.one;
         
-        // Play instructions on start
-        StartCoroutine(PlayInstructions());
-    }
-    
-    IEnumerator PlayInstructions()
-    {
-        // Example of how to announce instructions
-        Debug.Log("Playing Learning Mode instructions");
-        // AudioManager.Instance.PlayAnnouncement("Learning Mode. Explore the Braille pattern for each letter. Press Next and Previous to navigate.");
+        // Set the button to look right based on selected/not selected
+        UpdateVisualState();
         
-        // Simulate instruction audio duration
-        yield return new WaitForSeconds(3f);
-    }
-    
-    void DisplayCurrentLetter()
-    {
-        char currentLetter = letters[currentLetterIndex];
+        // Let's see if this works
+        Debug.Log("Button " + buttonId + " ready to go");
         
-        // Update the letter display
-        letterDisplay.text = currentLetter.ToString();
-        
-        // Update the Braille pattern using your existing BrailleGridManager
-        if (brailleGridManager != null)
+        // DIRECT SOUND TEST - play directly for testing
+        if (buttonSound != null)
         {
-            brailleGridManager.ResetAllButtons();
-            brailleGridManager.DisplayLetter(currentLetter);
-        }
-        
-        // Announce the letter (using your AudioManager)
-        string audioDescription = brailleDatabase ? 
-            brailleDatabase.GetAudioDescription(currentLetter) : 
-            "Letter " + currentLetter;
-        
-        Debug.Log("Announcing: " + audioDescription);
-        
-        // If you implement TTS later, you can uncomment this
-        // AudioManager.Instance.AnnounceLetter(audioDescription);
-        
-        // Provide haptic feedback
-        if (vibrationEnabled)
-        {
-            Handheld.Vibrate();
+            Debug.Log("Playing test sound for Button " + buttonId + " directly");
+            AudioSource.PlayClipAtPoint(buttonSound, Camera.main.transform.position, 1.0f);
         }
     }
-    
-    void OnPrevButtonPressed()
-    {
-        // Play selection sound
-        if (AudioManager.Instance != null)
-        {
-            AudioManager.Instance.PlaySelectionSound();
-        }
-        
-        // Provide haptic feedback
-        if (vibrationEnabled)
-        {
-            Handheld.Vibrate();
-        }
-        
-        // Navigate to previous letter
-        currentLetterIndex--;
-        if (currentLetterIndex < 0)
-        {
-            currentLetterIndex = letters.Length - 1;
-        }
-        
-        DisplayCurrentLetter();
-    }
-    
-    void OnNextButtonPressed()
-    {
-        // Play selection sound
-        if (AudioManager.Instance != null)
-        {
-            AudioManager.Instance.PlaySelectionSound();
-        }
-        
-        // Provide haptic feedback
-        if (vibrationEnabled)
-        {
-            Handheld.Vibrate();
-        }
-        
-        // Navigate to next letter
-        currentLetterIndex++;
-        if (currentLetterIndex >= letters.Length)
-        {
-            currentLetterIndex = 0;
-        }
-        
-        DisplayCurrentLetter();
-    }
-    
-    void OnHomeButtonPressed()
-    {
-        // Play selection sound
-        if (AudioManager.Instance != null)
-        {
-            AudioManager.Instance.PlaySelectionSound();
-        }
-        
-        // Provide haptic feedback
-        if (vibrationEnabled)
-        {
-            Handheld.Vibrate();
-        }
-        
-        // Navigate to main menu
-        SceneManager.LoadScene("MainMenu");
-    }
-    
-    // Handle long press for replaying instructions
-    private float pressStartTime = 0f;
-    private bool isLongPressing = false;
     
     void Update()
     {
-        // Check for long press (touch or mouse)
-        if (Input.touchCount > 0)
+        // Handle the squish animation
+        if (isPressed)
         {
-            Touch touch = Input.GetTouch(0);
-            
-            if (touch.phase == TouchPhase.Began)
-            {
-                pressStartTime = Time.time;
-                isLongPressing = true;
-            }
-            else if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled)
-            {
-                isLongPressing = false;
-            }
+            // Squish down when pressed
+            transform.localScale = Vector3.Lerp(transform.localScale, 
+                                              originalScale * pressScaleAmount, 
+                                              Time.deltaTime * animationSpeed);
         }
-        else if (Input.GetMouseButtonDown(0))
+        else
         {
-            pressStartTime = Time.time;
-            isLongPressing = true;
-        }
-        else if (Input.GetMouseButtonUp(0))
-        {
-            isLongPressing = false;
+            // Pop back up when released
+            transform.localScale = Vector3.Lerp(transform.localScale, 
+                                              originalScale, 
+                                              Time.deltaTime * animationSpeed);
         }
         
-        // Check if long press duration has been reached
-        if (isLongPressing && (Time.time - pressStartTime > 3.0f))
+        // Test with keyboard (press 1-6 to toggle buttons)
+        if (buttonId == 1 && Input.GetKeyDown(KeyCode.Alpha1) || 
+            buttonId == 2 && Input.GetKeyDown(KeyCode.Alpha2) || 
+            buttonId == 3 && Input.GetKeyDown(KeyCode.Alpha3) || 
+            buttonId == 4 && Input.GetKeyDown(KeyCode.Alpha4) || 
+            buttonId == 5 && Input.GetKeyDown(KeyCode.Alpha5) || 
+            buttonId == 6 && Input.GetKeyDown(KeyCode.Alpha6))
         {
-            isLongPressing = false; // Reset to prevent multiple triggers
-            StartCoroutine(PlayInstructions());
+            isSelected = !isSelected;
+            UpdateVisualState();
+            PlayButtonSound();
         }
+    }
+    
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        // Flip between selected/not selected
+        isSelected = !isSelected;
+        
+        // Make it look right
+        UpdateVisualState();
+        
+        // Beep boop
+        PlayButtonSound();
+        
+        // For troubleshooting
+        Debug.Log("Dot " + buttonId + " is now " + (isSelected ? "ON" : "OFF"));
+    }
+    
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        // Button is being pressed down
+        isPressed = true;
+        buttonImage.color = pressedColor;
+    }
+    
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        // Finger lifted off button
+        isPressed = false;
+        UpdateVisualState();
+    }
+    
+    // Update color based on whether dot is on or off
+    private void UpdateVisualState()
+    {
+        if (buttonImage != null)
+        {
+            buttonImage.color = isSelected ? selectedColor : defaultColor;
+        }
+    }
+    
+    // Play the button sound - using direct PlayClipAtPoint for reliability
+    private void PlayButtonSound()
+    {
+        if (buttonSound != null)
+        {
+            Debug.Log("Playing sound for Button " + buttonId);
+            
+            // Method 1: Try using the AudioSource component
+            if (audioSource != null)
+            {
+                audioSource.clip = buttonSound;
+                audioSource.Play();
+            }
+            
+            // Method 2: Use PlayClipAtPoint as a backup
+            AudioSource.PlayClipAtPoint(buttonSound, Camera.main.transform.position, 1.0f);
+        }
+        else
+        {
+            Debug.LogWarning("Button " + buttonId + " has no sound assigned!");
+        }
+    }
+    
+    // Turn off this dot
+    public void ResetButton()
+    {
+        isSelected = false;
+        UpdateVisualState();
+    }
+    
+    // Manually set dot state (for showing patterns)
+    public void SetSelected(bool selected)
+    {
+        isSelected = selected;
+        UpdateVisualState();
     }
 }
