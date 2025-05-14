@@ -1596,3 +1596,12 @@ AssetImportParameters requested are different than current active one (requested
   custom:scripting/monoscript/fileName/BrailleManager.cs: 56564437442e38af255b265d198bec3f -> 
   custom:scripting/precompiled-assembly-types:Assembly-CSharp: 502b8794c4d48288ca58d56cb2a74f8d -> 
   custom:scripting/monoscript/fileName/Benchmark03.cs: 17cc87e0529ac71d909a946afb47a274 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 1543.440409 seconds.
+  path: Assets/Scenes/About.unity
+  artifactKey: Guid(81b943d03096c48f190ce0f4c6e354cd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/About.unity using Guid(81b943d03096c48f190ce0f4c6e354cd) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+ -> (artifact id: '89cb86d9f8aacb2ebcf0850091225dec') in 0.004245 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
