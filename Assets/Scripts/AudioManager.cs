@@ -1,25 +1,15 @@
 using UnityEngine;
-using System.Collections.Generic;
 
 public class AudioManager : MonoBehaviour
 {
-    // Singleton pattern
-    public static AudioManager Instance;
-
-    [Header("Button Sounds")]
-    // Six unique sounds for each Braille dot
-    public AudioClip[] dotSounds = new AudioClip[6];
+    public static AudioManager Instance { get; private set; }
     
-    [Header("Feedback Sounds")]
-    public AudioClip correctSound;
-    public AudioClip selectionSound;
-    
-    // Audio source components
-    private AudioSource effectsSource;
+    private AudioSource audioSource;
+    private bool[] activeButtons = new bool[6];
+    private char currentLetter = 'A';
     
     private void Awake()
     {
-        // Singleton setup
         if (Instance == null)
         {
             Instance = this;
@@ -31,27 +21,71 @@ public class AudioManager : MonoBehaviour
             return;
         }
         
-        // Create audio source
-        effectsSource = gameObject.AddComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+        
+        audioSource.playOnAwake = false;
+        
+        for (int i = 0; i < activeButtons.Length; i++)
+        {
+            activeButtons[i] = false;
+        }
+        
+        activeButtons[0] = true;
     }
     
-    // Play a specific dot sound (0-5)
-    public void PlayDotSound(int dotIndex)
+    public void SetActiveButtons(bool[] pattern, char letter)
     {
-        if (dotIndex >= 0 && dotIndex < dotSounds.Length && dotSounds[dotIndex] != null)
+        currentLetter = letter;
+        
+        for (int i = 0; i < activeButtons.Length; i++)
         {
-            effectsSource.PlayOneShot(dotSounds[dotIndex]);
+            activeButtons[i] = false;
+        }
+        
+        for (int i = 0; i < pattern.Length && i < activeButtons.Length; i++)
+        {
+            activeButtons[i] = pattern[i];
+        }
+        
+        Debug.Log("Active buttons updated for letter " + letter + ": " + string.Join(", ", activeButtons));
+    }
+    
+    public void PlaySound(AudioClip clip, int buttonId)
+    {
+        if (currentLetter == 'A' && buttonId != 0)
+        {
+            Debug.Log("Button " + buttonId + " won't play for letter A");
+            return;
+        }
+        
+        if (buttonId < 0 || buttonId >= activeButtons.Length)
+        {
+            return;
+        }
+        
+        if (activeButtons[buttonId])
+        {
+            if (clip != null && audioSource != null)
+            {
+                Debug.Log("Playing sound for button " + buttonId);
+                audioSource.PlayOneShot(clip);
+            }
+        }
+        else
+        {
+            Debug.Log("Button " + buttonId + " is not active, no sound played");
         }
     }
     
-    // Play feedback sounds
-    public void PlayCorrectSound()
+    public void PlaySound(AudioClip clip)
     {
-        effectsSource.PlayOneShot(correctSound);
-    }
-    
-    public void PlaySelectionSound()
-    {
-        effectsSource.PlayOneShot(selectionSound);
+        if (clip != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(clip);
+        }
     }
 }

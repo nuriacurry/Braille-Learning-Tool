@@ -1,208 +1,112 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using System.Collections;
 
-public class BrailleButton : MonoBehaviour, IPointerClickHandler, IPointerDownHandler, IPointerUpHandler
+public class BrailleDotButton : MonoBehaviour, IPointerClickHandler, IPointerDownHandler, IPointerUpHandler
 {
-    public int buttonId; // 1-6 for standard Braille dot positions
+    public int buttonId;
     public bool isSelected = false;
-    public AudioClip buttonSound; // Different tone for each button
-
-    // Customize these to change button look & feel
+    public AudioClip buttonSound;
+    
     public Color defaultColor = Color.white;
     public Color selectedColor = Color.yellow;
-    public Color pressedColor = new Color(1f, 0.8f, 0f); // Orange-ish when pressed
-    public float pressScaleAmount = 0.9f; // Shrink to 90% when pressed
-    public float animationSpeed = 10f; // Higher = faster animation
-
+    public Color pressedColor = new Color(1f, 0.8f, 0f);
+    public float pressScaleAmount = 0.9f;
+    public float animationSpeed = 10f;
+    
     private Button button;
     private Image buttonImage;
-    private AudioSource audioSource;
     private Vector3 originalScale;
     private bool isPressed = false;
-
+    
     void Start()
-{
-    // Grab all the stuff we need
-    button = GetComponent<Button>();
-    buttonImage = GetComponent<Image>();
-    audioSource = GetComponent<AudioSource>();
-
-    // No audio? No problem, let's add it
-    if (audioSource == null)
     {
-        audioSource = gameObject.AddComponent<AudioSource>();
-        audioSource.playOnAwake = false; // Don't play until we say so
-    }
-
-    // Assign button sound to audio source
-    if (buttonSound != null && audioSource != null)
-    {
-        audioSource.clip = buttonSound;
+        button = GetComponent<Button>();
+        buttonImage = GetComponent<Image>();
+        
+        originalScale = transform.localScale != Vector3.zero ? transform.localScale : Vector3.one;
+        
+        UpdateVisualState();
+        
+        Debug.Log("Button " + buttonId + " ready to go");
     }
     
-    // Remember how big the button is supposed to be
-    // Commented out as you did
-    //originalScale = transform.localScale;
-
-    // Set the button to look right based on selected/not selected
-    UpdateVisualState();
-
-    // Let's see if this works
-    Debug.Log("Button " + buttonId + " ready to go");
-    
-    // Test sound after a short delay
-    StartCoroutine(TestSoundAfterDelay());
-}
-
-// Test the button sound automatically
-private IEnumerator TestSoundAfterDelay()
-{
-    yield return new WaitForSeconds(2 + buttonId * 0.5f); // Stagger by button ID
-    
-    if (audioSource != null && buttonSound != null)
-    {
-        audioSource.PlayOneShot(buttonSound);
-    }
-}
-
     void Update()
     {
-        // Handle the squish animation
         if (isPressed)
         {
-            // Squish down when pressed
-            transform.localScale = Vector3.Lerp(transform.localScale,
-                                               originalScale * pressScaleAmount,
-                                               Time.deltaTime * animationSpeed);
+            transform.localScale = Vector3.Lerp(transform.localScale, 
+                                              originalScale * pressScaleAmount, 
+                                              Time.deltaTime * animationSpeed);
         }
         else
         {
-            // Pop back up when released
-            transform.localScale = Vector3.Lerp(transform.localScale,
-                                               originalScale,
-                                               Time.deltaTime * animationSpeed);
+            transform.localScale = Vector3.Lerp(transform.localScale, 
+                                              originalScale, 
+                                              Time.deltaTime * animationSpeed);
         }
-        if (buttonId == 1 && Input.GetKeyDown(KeyCode.Alpha1))
-    {
-        Debug.Log("Key 1 pressed - testing Button 1");
-        isSelected = !isSelected;
-        UpdateVisualState();
-        PlayButtonSound();
+        
+        if (buttonId == 1 && Input.GetKeyDown(KeyCode.Alpha1) || 
+            buttonId == 2 && Input.GetKeyDown(KeyCode.Alpha2) || 
+            buttonId == 3 && Input.GetKeyDown(KeyCode.Alpha3) || 
+            buttonId == 4 && Input.GetKeyDown(KeyCode.Alpha4) || 
+            buttonId == 5 && Input.GetKeyDown(KeyCode.Alpha5) || 
+            buttonId == 6 && Input.GetKeyDown(KeyCode.Alpha6))
+        {
+            isSelected = !isSelected;
+            UpdateVisualState();
+            PlaySoundThroughAudioManager();
+        }
     }
-    else if (buttonId == 2 && Input.GetKeyDown(KeyCode.Alpha2))
-    {
-        Debug.Log("Key 2 pressed - testing Button 2");
-        isSelected = !isSelected;
-        UpdateVisualState();
-        PlayButtonSound();
-    }
-    else if (buttonId == 3 && Input.GetKeyDown(KeyCode.Alpha3))
-    {
-        Debug.Log("Key 3 pressed - testing Button 3");
-        isSelected = !isSelected;
-        UpdateVisualState();
-        PlayButtonSound();
-    }
-    else if (buttonId == 4 && Input.GetKeyDown(KeyCode.Alpha4))
-    {
-        Debug.Log("Key 4 pressed - testing Button 4");
-        isSelected = !isSelected;
-        UpdateVisualState();
-        PlayButtonSound();
-    }
-    else if (buttonId == 5 && Input.GetKeyDown(KeyCode.Alpha5))
-    {
-        Debug.Log("Key 5 pressed - testing Button 5");
-        isSelected = !isSelected;
-        UpdateVisualState();
-        PlayButtonSound();
-    }
-    else if (buttonId == 6 && Input.GetKeyDown(KeyCode.Alpha6))
-    {
-        Debug.Log("Key 6 pressed - testing Button 6");
-        isSelected = !isSelected;
-        UpdateVisualState();
-        PlayButtonSound();
-    }
-}
     
-
     public void OnPointerClick(PointerEventData eventData)
     {
-        // Flip between selected/not selected
         isSelected = !isSelected;
-
-        // Make it look right
         UpdateVisualState();
-
-        // Beep boop
-        PlayButtonSound();
-
-        // For troubleshooting
+        PlaySoundThroughAudioManager();
+        
         Debug.Log("Dot " + buttonId + " is now " + (isSelected ? "ON" : "OFF"));
     }
-
+    
     public void OnPointerDown(PointerEventData eventData)
     {
-        // Button is being pressed down
         isPressed = true;
         buttonImage.color = pressedColor;
     }
-
+    
     public void OnPointerUp(PointerEventData eventData)
     {
-        // Finger lifted off button
         isPressed = false;
         UpdateVisualState();
     }
-
-    // Update color based on whether dot is on or off
-    private void UpdateVisualState()
-    {
-        buttonImage.color = isSelected ? selectedColor : defaultColor;
-    }
-
-    // Play the button sound
-    private void PlayButtonSound()
-{
-    Debug.Log("Attempting to play sound on Button " + buttonId);
     
-    if (audioSource == null)
+    public void UpdateVisualState()
     {
-        Debug.LogError("AudioSource is NULL on Button " + buttonId);
-        return;
+        if (buttonImage != null)
+        {
+            buttonImage.color = isSelected ? selectedColor : defaultColor;
+        }
     }
     
-    if (buttonSound == null)
+    private void PlaySoundThroughAudioManager()
     {
-        Debug.LogError("ButtonSound is NULL on Button " + buttonId);
-        return;
+        if (buttonSound != null)
+        {
+            int buttonIndex = buttonId - 1; // Adjust for zero-based indexing
+            
+            if (AudioManager.Instance != null)
+            {
+                AudioManager.Instance.PlaySound(buttonSound, buttonIndex);
+            }
+        }
     }
     
-    // Set the audio clip
-    audioSource.clip = buttonSound;
-    
-    // Try to play
-    try
-    {
-        Debug.Log("Playing sound: " + buttonSound.name + " on Button " + buttonId);
-        audioSource.PlayOneShot(buttonSound);
-    }
-    catch (System.Exception e)
-    {
-        Debug.LogError("Error playing sound: " + e.Message);
-    }
-}
-    // Turn off this dot
     public void ResetButton()
     {
         isSelected = false;
         UpdateVisualState();
     }
-
-    // Manually set dot state (for showing patterns)
+    
     public void SetSelected(bool selected)
     {
         isSelected = selected;
