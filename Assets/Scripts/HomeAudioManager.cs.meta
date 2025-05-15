@@ -5,7 +5,7 @@ MonoImporter:
   serializedVersion: 2
   defaultReferences:
   - audioSource: {instanceID: 0}
-  - homeScreenInstructions: {fileID: 8300000, guid: 3893cc629cd064c2abedbf555f45268e, type: 3}
+  - homeScreenInstructions: {fileID: 8300000, guid: 3a28c930723774d81ac43268ccee9c95, type: 3}
   - aboutScreenInstructions: {instanceID: 0}
   - learningModeInstructions: {instanceID: 0}
   - practiceModeInstructions: {instanceID: 0}
