@@ -21,7 +21,7 @@ public class HomeScreenController : MonoBehaviour
     {
         // Load learning mode scene
         Debug.Log("Attempting to load LearningMode scene");
-        SceneManager.LoadScene("LearningMode");
+        SceneManager.LoadScene("LearningMode-A");
     }
     
     public void OpenPractice()

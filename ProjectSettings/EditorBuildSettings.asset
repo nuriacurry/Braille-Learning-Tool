@@ -11,10 +11,88 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/About.unity
     guid: 81b943d03096c48f190ce0f4c6e354cd
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/LearningMode.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
     path: Assets/Scenes/PracticeMode.unity
     guid: 982110c3a826042f6b6e978fb3efea4e
+  - enabled: 1
+    path: Assets/Scenes/LearningMode-A.unity
+    guid: 6daa83298830f498ea7156eff155da6f
+  - enabled: 1
+    path: Assets/Scenes/LearningMode-B.unity
+    guid: 4b1fcea6289264ecaa404fd44416d13d
+  - enabled: 1
+    path: Assets/Scenes/LearningMode-C.unity
+    guid: c74aa31bbe78e4abc9712c1b9025de3d
+  - enabled: 1
+    path: Assets/Scenes/LearningMode-D.unity
+    guid: 1a90fc74086e641849cbec1f88c3fdd0
+  - enabled: 1
+    path: Assets/Scenes/LearningMode-E.unity
+    guid: 8a1b0484e0ba241faa4c6221475bc098
+  - enabled: 1
+    path: Assets/Scenes/LearningMode-F.unity
+    guid: 805023892bcb54fdc9fb00f2dac0e9ef
+  - enabled: 1
+    path: Assets/Scenes/LearningMode-G.unity
+    guid: 945e9540d0e214962b11f2b722e2a214
+  - enabled: 1
+    path: Assets/Scenes/LearningMode-H.unity
+    guid: 644b4df37c3a24dffbac5fd5abb2e2df
+  - enabled: 1
+    path: Assets/Scenes/LearningMode-I.unity
+    guid: 0fea98cfc4c9e4cfa9215ee848216575
+  - enabled: 1
+    path: Assets/Scenes/LearningMode-J.unity
+    guid: a5bae1dde94b9403894f268e4e0dfaa8
+  - enabled: 1
+    path: Assets/Scenes/LearningMode-K.unity
+    guid: 3420a6311a1744fb9a888ab11aff6c78
+  - enabled: 1
+    path: Assets/Scenes/LearningMode-L.unity
+    guid: e4364daed631f4ff684f050d43cce2fc
+  - enabled: 1
+    path: Assets/Scenes/LearningMode-M.unity
+    guid: d9386009763d64ae1910fd9871fb9446
+  - enabled: 1
+    path: Assets/Scenes/LearningMode-N.unity
+    guid: dfeea11ecb37f428e838e4d0834155c5
+  - enabled: 1
+    path: Assets/Scenes/LearningMode-O.unity
+    guid: dcf2ca6415784441dbfb0455ed95c878
+  - enabled: 1
+    path: Assets/Scenes/LearningMode-P.unity
+    guid: d780f049aafcb4c9ea229427300abea4
+  - enabled: 1
+    path: Assets/Scenes/LearningMode-Q.unity
+    guid: a6978baffa49142139a5d3797b386b37
+  - enabled: 1
+    path: Assets/Scenes/LearningMode-R.unity
+    guid: f577f34965ecd423283bdedf689ff693
+  - enabled: 1
+    path: Assets/Scenes/LearningMode-S.unity
+    guid: e6189e6a09976484dbbd708ee67a7318
+  - enabled: 1
+    path: Assets/Scenes/LearningMode-T.unity
+    guid: 7579ca9932b2549f79e1c11d352304a6
+  - enabled: 1
+    path: Assets/Scenes/LearningMode-U.unity
+    guid: ceeef52cc62564819b90915ea92960b8
+  - enabled: 1
+    path: Assets/Scenes/LearningMode-V.unity
+    guid: 808ae32817e9542c99cee3d773ce54e0
+  - enabled: 1
+    path: Assets/Scenes/LearningMode-W.unity
+    guid: 3f4a9ee4887b547df9ee63fb2b857520
+  - enabled: 1
+    path: Assets/Scenes/LearningMode-X.unity
+    guid: 8f2a328deeaeb474281d3ad80c543982
+  - enabled: 1
+    path: Assets/Scenes/LearningMode-Y.unity
+    guid: 64f31a9f925b64fc29d475bdd73a6d07
+  - enabled: 1
+    path: Assets/Scenes/LearningMode-Z.unity
+    guid: 5f61e1d2149f74103bebd1dbe418a1e3
   m_configObjects: {}

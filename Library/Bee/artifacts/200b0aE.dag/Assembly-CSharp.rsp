@@ -378,6 +378,7 @@
 "Assets/Scripts/HomeScreenController 2.cs"
 "Assets/Scripts/KeyboardInputHandler.cs"
 "Assets/Scripts/LearningModeController.cs"
+"Assets/Scripts/SceneLoader.cs"
 "Assets/Scripts/SimpleAudioPlayer.cs"
 "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark01.cs"
 "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark01_UGUI.cs"

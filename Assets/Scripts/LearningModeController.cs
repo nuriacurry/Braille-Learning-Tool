@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement; // Add this for scene management
 
 public class LearningModeController : MonoBehaviour
 {
@@ -10,10 +11,19 @@ public class LearningModeController : MonoBehaviour
     private int currentPosition = 0;
     private readonly string alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     
+    // Add a reference to the home button
+    public Button homeButton;
+    
     void Start()
     {
         gridManager = FindObjectOfType<BrailleGridManager>();
         DisplayCurrentLetter();
+        
+        // Set up home button listener if it exists
+        if (homeButton != null)
+        {
+            homeButton.onClick.AddListener(GoToHomeScene);
+        }
     }
     
     void DisplayCurrentLetter()
@@ -60,8 +70,30 @@ public class LearningModeController : MonoBehaviour
         PreviousLetter();
     }
     
+    // Modify this method to also search for the home button if not assigned
     public void OnHomeButton()
     {
-        ResetToFirstLetter();
+        // For the "HOME" button directly in hierarchy
+        GoToHomeScene();
     }
+    
+    // Add this new method for scene navigation
+    public void GoToHomeScene()
+    {
+        Debug.Log("Returning to Home Scene from Learning Mode");
+        SceneManager.LoadScene("HomeScene");
+    }
+
+    // Add to LearningModeController.cs
+void OnEnable()
+{
+    // Reconnect the home button every time the component is enabled
+    var homeBtn = GameObject.Find("HOME")?.GetComponent<Button>();
+    if (homeBtn != null)
+    {
+        homeBtn.onClick.RemoveAllListeners(); // Clear any existing listeners
+        homeBtn.onClick.AddListener(GoToHomeScene);
+        Debug.Log("Re-connected HOME button on enable");
+    }
+}
 }
