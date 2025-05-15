@@ -16,13 +16,24 @@ public class BrailleDotButton : MonoBehaviour, IPointerClickHandler, IPointerDow
     
     private Button button;
     private Image buttonImage;
+    //private AudioSource audioSource;
+    public AudioSource audioSource;
     private Vector3 originalScale;
     private bool isPressed = false;
     
     void Start()
     {
+        // Get components
         button = GetComponent<Button>();
         buttonImage = GetComponent<Image>();
+        //audioSource = GetComponent<AudioSource>();
+        
+        // Add AudioSource if missing
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource.playOnAwake = false;
+        }
         
         originalScale = transform.localScale != Vector3.zero ? transform.localScale : Vector3.one;
         
@@ -33,6 +44,7 @@ public class BrailleDotButton : MonoBehaviour, IPointerClickHandler, IPointerDow
     
     void Update()
     {
+        // Handle squish animation
         if (isPressed)
         {
             transform.localScale = Vector3.Lerp(transform.localScale, 
@@ -46,6 +58,7 @@ public class BrailleDotButton : MonoBehaviour, IPointerClickHandler, IPointerDow
                                               Time.deltaTime * animationSpeed);
         }
         
+        // Keyboard shortcuts (1-6)
         if (buttonId == 1 && Input.GetKeyDown(KeyCode.Alpha1) || 
             buttonId == 2 && Input.GetKeyDown(KeyCode.Alpha2) || 
             buttonId == 3 && Input.GetKeyDown(KeyCode.Alpha3) || 
@@ -55,31 +68,39 @@ public class BrailleDotButton : MonoBehaviour, IPointerClickHandler, IPointerDow
         {
             isSelected = !isSelected;
             UpdateVisualState();
-            PlaySoundThroughAudioManager();
+            PlayButtonSound();
         }
     }
     
     public void OnPointerClick(PointerEventData eventData)
     {
+        // Toggle selection state
         isSelected = !isSelected;
+        
+        // Update appearance
         UpdateVisualState();
-        PlaySoundThroughAudioManager();
+        
+        // Play sound
+        PlayButtonSound();
         
         Debug.Log("Dot " + buttonId + " is now " + (isSelected ? "ON" : "OFF"));
     }
     
     public void OnPointerDown(PointerEventData eventData)
     {
+        // Button pressed down
         isPressed = true;
         buttonImage.color = pressedColor;
     }
     
     public void OnPointerUp(PointerEventData eventData)
     {
+        // Button released
         isPressed = false;
         UpdateVisualState();
     }
     
+    // Update visual state based on selection
     public void UpdateVisualState()
     {
         if (buttonImage != null)
@@ -88,25 +109,29 @@ public class BrailleDotButton : MonoBehaviour, IPointerClickHandler, IPointerDow
         }
     }
     
-    private void PlaySoundThroughAudioManager()
+    // Play button sound directly
+    public void PlayButtonSound()
     {
-        if (buttonSound != null)
+        if (audioSource != null && buttonSound != null)
         {
-            int buttonIndex = buttonId - 1; // Adjust for zero-based indexing
-            
-            if (AudioManager.Instance != null)
-            {
-                AudioManager.Instance.PlaySound(buttonSound, buttonIndex);
-            }
+            audioSource.clip = buttonSound;
+            audioSource.Play();
+            Debug.Log("Playing sound for button " + buttonId);
+        }
+        else
+        {
+            Debug.LogWarning("Cannot play sound - AudioSource or AudioClip missing");
         }
     }
     
+    // Reset button state
     public void ResetButton()
     {
         isSelected = false;
         UpdateVisualState();
     }
     
+    // Set button state
     public void SetSelected(bool selected)
     {
         isSelected = selected;
