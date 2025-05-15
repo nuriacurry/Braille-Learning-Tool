@@ -765,7 +765,7 @@ MonoBehaviour:
   homeScreenInstructions: {fileID: 8300000, guid: 3a28c930723774d81ac43268ccee9c95, type: 3}
   aboutScreenInstructions: {fileID: 8300000, guid: 0e33e82efa2c84a5da1619993068468f, type: 3}
   learningModeInstructions: {fileID: 0}
-  practiceModeInstructions: {fileID: 0}
+  practiceModeInstructions: {fileID: 8300000, guid: 1c36ac0de73874597b0a48068e1c567c, type: 3}
 --- !u!4 &816418463
 Transform:
   m_ObjectHideFlags: 0
