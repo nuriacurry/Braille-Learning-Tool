@@ -54,8 +54,8 @@ public class BrailleGridManager : MonoBehaviour
         AudioClip reSound = Resources.Load<AudioClip>("Re");
         AudioClip miSound = Resources.Load<AudioClip>("Mi");
         AudioClip faSound = Resources.Load<AudioClip>("Fa");
-        AudioClip solSound = Resources.Load<AudioClip>("So");
-        AudioClip laSound = Resources.Load<AudioClip>("La");
+        AudioClip solSound = Resources.Load<AudioClip>("Sounds/So");
+        AudioClip laSound = Resources.Load<AudioClip>("Sounds/La");
         
         // Try alternate paths if not found
         if (doSound == null) doSound = Resources.Load<AudioClip>("Sounds/Do");
