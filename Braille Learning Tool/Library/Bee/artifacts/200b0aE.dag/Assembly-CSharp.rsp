@@ -363,6 +363,7 @@
 "Assets/Scripts/BrailleDatabase.cs"
 "Assets/Scripts/BrailleManager.cs"
 "Assets/Scripts/BrailleTester.cs"
+"Assets/Scripts/HomeAudioManager.cs"
 "Assets/Scripts/HomeScreenController 2.cs"
 "Assets/Scripts/LearningModeController.cs"
 "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark01.cs"
